@@ -3,8 +3,11 @@ extends KinematicBody2D
 
 var linear_vel = Vector2()
 
-var SPEED = 400
+var SPEED = 800
 var GRAVITY = 800
+
+
+var Bullet = preload("res://scenes/Bullet.tscn")
 
 
 onready var playback = $AnimationTree.get("parameters/playback")
@@ -17,8 +20,6 @@ func _physics_process(delta):
 	linear_vel = move_and_slide(linear_vel, Vector2.UP)
 	
 	var on_floor = is_on_floor()
-	
-	
 	
 	var target_vel = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
@@ -41,6 +42,10 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("attack"):
 		playback.travel("attack")
+		var bullet = Bullet.instance()
+		get_parent().add_child(bullet)
+		bullet.global_position = $Bullet.global_position
+		
 	
 	if target_vel.x < 0:
 		$Sprite.flip_h = true

@@ -7,6 +7,9 @@
 [node name="Hero" parent="." instance=ExtResource( 1 )]
 position = Vector2( 252.346, 124.035 )
 
+[node name="Hero2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 576.542, 208.792 )
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
