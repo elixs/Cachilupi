@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://scripts/Hero.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Run/HeroKnight_Run_5.png" type="Texture" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Attack1/HeroKnight_Attack1_3.png" type="Texture" id=23]
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Attack1/HeroKnight_Attack1_0.png" type="Texture" id=24]
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Attack1/HeroKnight_Attack1_1.png" type="Texture" id=25]
+[ext_resource path="res://icon.png" type="Texture" id=26]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 32.6279
@@ -135,9 +136,9 @@ position = Vector2( 0, 15.6209 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.831373, 0.156863, 0.156863, 1 )
+modulate = Color( 0.364706, 0.113725, 0.913725, 1 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 8 )
+texture = ExtResource( 18 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 10 )
@@ -152,3 +153,7 @@ parameters/playback = SubResource( 9 )
 
 [node name="Bullet" type="Position2D" parent="."]
 position = Vector2( 33.371, -0.667419 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 0.794594, -54.5623 )
+texture = ExtResource( 26 )
