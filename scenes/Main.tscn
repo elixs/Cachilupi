@@ -5,7 +5,9 @@
 [node name="Main" type="Node2D"]
 
 [node name="Hero" parent="." instance=ExtResource( 1 )]
-position = Vector2( 311.018, 166.855 )
+position = Vector2( 252.346, 124.035 )
 
-[node name="Hero" parent="Hero" instance=ExtResource( 1 )]
-position = Vector2( 204.936, 56.7955 )
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 127.925, 400.34, 250.822, 440.599, 363.126, 403.518, 502.975, 434.243, 680.965, 395.042, 961.722, 403.518, 965.96, 587.865, 54.8219, 585.746, 63.2976, 392.924 )
