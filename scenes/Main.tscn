@@ -6,3 +6,6 @@
 
 [node name="Hero" parent="." instance=ExtResource( 1 )]
 position = Vector2( 311.018, 166.855 )
+
+[node name="Hero" parent="Hero" instance=ExtResource( 1 )]
+position = Vector2( 204.936, 56.7955 )

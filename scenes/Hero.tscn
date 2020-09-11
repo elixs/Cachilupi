@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scripts/Hero.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Run/HeroKnight_Run_5.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Idle/HeroKnight_Idle_6.png" type="Texture" id=17]
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Idle/HeroKnight_Idle_5.png" type="Texture" id=18]
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Run/HeroKnight_Run_6.png" type="Texture" id=19]
+[ext_resource path="res://icon.png" type="Texture" id=20]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 52.0353
@@ -111,3 +112,8 @@ tree_root = SubResource( 8 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 9 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( -1.78384, -60.6496 )
+scale = Vector2( 0.535466, 0.423978 )
+texture = ExtResource( 20 )
