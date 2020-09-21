@@ -5,10 +5,7 @@
 [node name="Main" type="Node2D"]
 
 [node name="Hero" parent="." instance=ExtResource( 1 )]
-position = Vector2( 252.346, 124.035 )
-
-[node name="Hero2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 576.542, 208.792 )
+position = Vector2( 363.47, -12.9053 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

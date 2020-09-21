@@ -3,8 +3,8 @@ extends KinematicBody2D
 
 var linear_vel = Vector2()
 
-var SPEED = 800
-var GRAVITY = 800
+var SPEED = 400
+var GRAVITY = 400
 
 
 var Bullet = preload("res://scenes/Bullet.tscn")
@@ -33,18 +33,30 @@ func _physics_process(delta):
 		linear_vel.y -= SPEED
 	
 	
+	var attacking = Input.is_action_just_pressed("attack")
 	
-	
-	if linear_vel.length_squared() > 10:
-		playback.travel("run")
-	else:
-		playback.travel("idle")
-		
-	if Input.is_action_just_pressed("attack"):
-		playback.travel("attack")
+	if attacking:
 		var bullet = Bullet.instance()
 		get_parent().add_child(bullet)
 		bullet.global_position = $Bullet.global_position
+	
+	
+	# Animation
+	
+	if on_floor:
+		if linear_vel.length_squared() > 10:
+			playback.travel("run")
+		else:
+			playback.travel("idle")
+	else:
+		if linear_vel.y > 0:
+			playback.travel("fall")
+		else:
+			playback.travel("jump")
+	
+	if attacking:
+		playback.travel("attack")
+
 		
 	
 	if target_vel.x < 0:
