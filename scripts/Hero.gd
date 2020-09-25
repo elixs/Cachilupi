@@ -6,6 +6,8 @@ var linear_vel = Vector2()
 var SPEED = 400
 var GRAVITY = 400
 
+var facing_right = true
+
 
 var Bullet = preload("res://scenes/Bullet.tscn")
 
@@ -34,13 +36,7 @@ func _physics_process(delta):
 	
 	
 	var attacking = Input.is_action_just_pressed("attack")
-	
-	if attacking:
-		var bullet = Bullet.instance()
-		get_parent().add_child(bullet)
-		bullet.global_position = $Bullet.global_position
-	
-	
+
 	# Animation
 	
 	if on_floor:
@@ -56,12 +52,20 @@ func _physics_process(delta):
 	
 	if attacking:
 		playback.travel("attack")
-
-		
 	
-	if target_vel.x < 0:
-		$Sprite.flip_h = true
-	if target_vel.x > 0:
-		$Sprite.flip_h = false
+	if facing_right and target_vel.x < 0:
+		scale.x = -1
+		facing_right = false
+		
+	if not facing_right and target_vel.x > 0:
+		scale.x = -1
+		facing_right = true
+
+func fire():
+	var bullet = Bullet.instance()
+	
+	get_parent().add_child(bullet)
+	bullet.rotation = 0 if facing_right else PI
+	bullet.global_position = $Bullet.global_position
 	
 	
