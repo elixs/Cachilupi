@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/DropMini.wav-b8036227ee4f95caba7e03d788ca1987.sample"
+
+[deps]
+
+source_file="res://sounds/SFX2020/DropMini.wav"
+dest_files=[ "res://.import/DropMini.wav-b8036227ee4f95caba7e03d788ca1987.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -3,8 +3,14 @@ extends KinematicBody2D
 
 var linear_vel = Vector2()
 
-var SPEED = 400
+var SPEED = 200
 var GRAVITY = 400
+
+var mana = 100 setget set_mana
+
+func set_mana(value):
+	mana = clamp(value, 0, 100)
+	$CanvasLayer/ProgressBar.value = mana
 
 var facing_right = true
 
@@ -49,7 +55,6 @@ func _physics_process(delta):
 			playback.travel("fall")
 		else:
 			playback.travel("jump")
-	
 	if attacking:
 		playback.travel("attack")
 	
@@ -63,9 +68,11 @@ func _physics_process(delta):
 
 func fire():
 	var bullet = Bullet.instance()
-	
 	get_parent().add_child(bullet)
 	bullet.rotation = 0 if facing_right else PI
 	bullet.global_position = $Bullet.global_position
+	set_mana(mana-10)
+	
+	
 	
 	
