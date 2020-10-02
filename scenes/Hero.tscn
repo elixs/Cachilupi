@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://scripts/Hero.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Run/HeroKnight_Run_5.png" type="Texture" id=2]
@@ -232,11 +232,13 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
 [sub_resource type="AnimationNodeStateMachine" id=32]
 states/attack/node = SubResource( 8 )
 states/attack/position = Vector2( 419, 252 )
 states/fall/node = SubResource( 9 )
-states/fall/position = Vector2( 990, 200 )
+states/fall/position = Vector2( 1032, 232 )
 states/idle/node = SubResource( 10 )
 states/idle/position = Vector2( 280, 70 )
 states/jump/node = SubResource( 11 )
@@ -245,9 +247,9 @@ states/jump_start/node = SubResource( 12 )
 states/jump_start/position = Vector2( 990, -43 )
 states/run/node = SubResource( 13 )
 states/run/position = Vector2( 622, -82 )
-transitions = [ "idle", "run", SubResource( 14 ), "run", "idle", SubResource( 15 ), "idle", "attack", SubResource( 16 ), "run", "attack", SubResource( 17 ), "attack", "run", SubResource( 18 ), "attack", "idle", SubResource( 19 ), "run", "jump_start", SubResource( 20 ), "idle", "jump_start", SubResource( 21 ), "jump_start", "jump", SubResource( 22 ), "jump", "fall", SubResource( 23 ), "fall", "run", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "attack", SubResource( 26 ), "attack", "fall", SubResource( 27 ), "attack", "jump", SubResource( 28 ), "attack", "jump_start", SubResource( 29 ), "jump_start", "attack", SubResource( 30 ), "jump", "attack", SubResource( 31 ) ]
+transitions = [ "idle", "run", SubResource( 14 ), "run", "idle", SubResource( 15 ), "idle", "attack", SubResource( 16 ), "run", "attack", SubResource( 17 ), "attack", "run", SubResource( 18 ), "attack", "idle", SubResource( 19 ), "run", "jump_start", SubResource( 20 ), "idle", "jump_start", SubResource( 21 ), "jump_start", "jump", SubResource( 22 ), "jump", "fall", SubResource( 23 ), "fall", "run", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "attack", SubResource( 26 ), "attack", "fall", SubResource( 27 ), "attack", "jump", SubResource( 28 ), "attack", "jump_start", SubResource( 29 ), "jump_start", "attack", SubResource( 30 ), "jump", "attack", SubResource( 31 ), "idle", "fall", SubResource( 36 ) ]
 start_node = "idle"
-graph_offset = Vector2( 69, -156 )
+graph_offset = Vector2( 160, 56 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=33]
 
@@ -257,7 +259,9 @@ bg_color = Color( 0.141176, 0.498039, 0.152941, 1 )
 [sub_resource type="StyleBoxFlat" id=35]
 bg_color = Color( 0.0862745, 0.00784314, 0.00784314, 1 )
 
-[node name="Hero" type="KinematicBody2D"]
+[node name="Hero" type="KinematicBody2D" groups=[
+"player",
+]]
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -286,7 +290,6 @@ parameters/playback = SubResource( 33 )
 position = Vector2( 47, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 33 )

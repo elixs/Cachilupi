@@ -14,6 +14,11 @@ func set_mana(value):
 
 var facing_right = true
 
+var active = false setget set_active
+func set_active(value):
+	active = value
+	$Camera2D.current = value
+
 
 var Bullet = preload("res://scenes/Bullet.tscn")
 
@@ -22,7 +27,6 @@ onready var playback = $AnimationTree.get("parameters/playback")
 
 func _physics_process(delta):
 	
-
 	linear_vel.y += GRAVITY * delta
 	
 	linear_vel = move_and_slide(linear_vel, Vector2.UP)
@@ -34,14 +38,17 @@ func _physics_process(delta):
 		0)
 #		Input.get_action_strength("down") - Input.get_action_strength("up"))
 	
+	if not active:
+		target_vel = Vector2()
+	
 	linear_vel.x = lerp(linear_vel.x, target_vel.x * SPEED, 0.5)
 	
 	
-	if on_floor and Input.is_action_just_pressed("jump"):
+	if on_floor and Input.is_action_just_pressed("jump") and active:
 		linear_vel.y -= SPEED
 	
 	
-	var attacking = Input.is_action_just_pressed("attack")
+	var attacking = Input.is_action_just_pressed("attack") and active
 
 	# Animation
 	
@@ -53,7 +60,7 @@ func _physics_process(delta):
 	else:
 		if linear_vel.y > 0:
 			playback.travel("fall")
-		else:
+		elif linear_vel.y < 0:
 			playback.travel("jump")
 	if attacking:
 		playback.travel("attack")
