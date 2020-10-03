@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://scripts/Hero.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Run/HeroKnight_Run_5.png" type="Texture" id=2]
@@ -232,9 +232,11 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
 
-[sub_resource type="AnimationNodeStateMachine" id=32]
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachine" id=34]
 states/attack/node = SubResource( 8 )
 states/attack/position = Vector2( 419, 252 )
 states/fall/node = SubResource( 9 )
@@ -247,16 +249,16 @@ states/jump_start/node = SubResource( 12 )
 states/jump_start/position = Vector2( 990, -43 )
 states/run/node = SubResource( 13 )
 states/run/position = Vector2( 622, -82 )
-transitions = [ "idle", "run", SubResource( 14 ), "run", "idle", SubResource( 15 ), "idle", "attack", SubResource( 16 ), "run", "attack", SubResource( 17 ), "attack", "run", SubResource( 18 ), "attack", "idle", SubResource( 19 ), "run", "jump_start", SubResource( 20 ), "idle", "jump_start", SubResource( 21 ), "jump_start", "jump", SubResource( 22 ), "jump", "fall", SubResource( 23 ), "fall", "run", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "attack", SubResource( 26 ), "attack", "fall", SubResource( 27 ), "attack", "jump", SubResource( 28 ), "attack", "jump_start", SubResource( 29 ), "jump_start", "attack", SubResource( 30 ), "jump", "attack", SubResource( 31 ), "idle", "fall", SubResource( 36 ) ]
+transitions = [ "idle", "run", SubResource( 14 ), "run", "idle", SubResource( 15 ), "idle", "attack", SubResource( 16 ), "run", "attack", SubResource( 17 ), "attack", "run", SubResource( 18 ), "attack", "idle", SubResource( 19 ), "run", "jump_start", SubResource( 20 ), "idle", "jump_start", SubResource( 21 ), "jump_start", "jump", SubResource( 22 ), "jump", "fall", SubResource( 23 ), "fall", "run", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "attack", SubResource( 26 ), "attack", "fall", SubResource( 27 ), "attack", "jump", SubResource( 28 ), "attack", "jump_start", SubResource( 29 ), "jump_start", "attack", SubResource( 30 ), "jump", "attack", SubResource( 31 ), "idle", "fall", SubResource( 32 ), "run", "fall", SubResource( 33 ) ]
 start_node = "idle"
-graph_offset = Vector2( 160, 56 )
+graph_offset = Vector2( 73, -156 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
 
-[sub_resource type="StyleBoxFlat" id=34]
+[sub_resource type="StyleBoxFlat" id=36]
 bg_color = Color( 0.141176, 0.498039, 0.152941, 1 )
 
-[sub_resource type="StyleBoxFlat" id=35]
+[sub_resource type="StyleBoxFlat" id=37]
 bg_color = Color( 0.0862745, 0.00784314, 0.00784314, 1 )
 
 [node name="Hero" type="KinematicBody2D" groups=[
@@ -270,7 +272,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.364706, 0.113725, 0.913725, 1 )
-texture = ExtResource( 16 )
+texture = ExtResource( 15 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 2 )
@@ -281,10 +283,10 @@ anims/jump_start = SubResource( 6 )
 anims/run = SubResource( 7 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 32 )
+tree_root = SubResource( 34 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 33 )
+parameters/playback = SubResource( 35 )
 
 [node name="Bullet" type="Position2D" parent="."]
 position = Vector2( 47, 0 )
@@ -301,8 +303,8 @@ margin_left = 19.0
 margin_top = 15.75
 margin_right = 154.0
 margin_bottom = 29.75
-custom_styles/fg = SubResource( 34 )
-custom_styles/bg = SubResource( 35 )
+custom_styles/fg = SubResource( 36 )
+custom_styles/bg = SubResource( 37 )
 value = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
