@@ -14,7 +14,7 @@ func set_health(value):
 	health = clamp(value, 0, 100)
 	$CanvasLayer/Health.value = health
 	if health == 0:
-		get_tree().reload_current_scene()
+		LevelManager.reset()
 
 var mana = 100 setget set_mana
 func set_mana(value):
