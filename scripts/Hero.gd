@@ -9,7 +9,6 @@ var GRAVITY = 400
 var invincible = false
 
 var health = 100 setget set_health
-
 func set_health(value):
 	health = clamp(value, 0, 100)
 	$CanvasLayer/Health.value = health
