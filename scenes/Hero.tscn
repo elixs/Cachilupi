@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://scripts/Hero.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Run/HeroKnight_Run_5.png" type="Texture" id=2]
@@ -256,10 +256,13 @@ graph_offset = Vector2( 73, -156 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=35]
 
 [sub_resource type="StyleBoxFlat" id=36]
-bg_color = Color( 0.141176, 0.498039, 0.152941, 1 )
+bg_color = Color( 0.12549, 0.490196, 0.137255, 1 )
 
 [sub_resource type="StyleBoxFlat" id=37]
 bg_color = Color( 0.0862745, 0.00784314, 0.00784314, 1 )
+
+[sub_resource type="StyleBoxFlat" id=38]
+bg_color = Color( 0.172549, 0.247059, 0.729412, 1 )
 
 [node name="Hero" type="KinematicBody2D" groups=[
 "player",
@@ -272,7 +275,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.364706, 0.113725, 0.913725, 1 )
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 2 )
@@ -298,7 +301,7 @@ stream = ExtResource( 33 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="Health" type="ProgressBar" parent="CanvasLayer"]
 margin_left = 19.0
 margin_top = 15.75
 margin_right = 154.0
@@ -309,3 +312,18 @@ value = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Mana" type="ProgressBar" parent="CanvasLayer"]
+margin_left = 19.0
+margin_top = 34.6702
+margin_right = 154.0
+margin_bottom = 48.6702
+custom_styles/fg = SubResource( 38 )
+custom_styles/bg = SubResource( 37 )
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+one_shot = true

@@ -6,11 +6,20 @@ var linear_vel = Vector2()
 var SPEED = 200
 var GRAVITY = 400
 
-var mana = 100 setget set_mana
+var invincible = false
 
+var health = 100 setget set_health
+
+func set_health(value):
+	health = clamp(value, 0, 100)
+	$CanvasLayer/Health.value = health
+	if health == 0:
+		get_tree().reload_current_scene()
+
+var mana = 100 setget set_mana
 func set_mana(value):
 	mana = clamp(value, 0, 100)
-	$CanvasLayer/ProgressBar.value = mana
+	$CanvasLayer/Mana.value = mana
 
 var facing_right = true
 
@@ -24,6 +33,10 @@ var Bullet = preload("res://scenes/Bullet.tscn")
 
 
 onready var playback = $AnimationTree.get("parameters/playback")
+
+
+func _ready() -> void:
+	$InvincibilityTimer.connect("timeout", self, "on_InvincibilityTimer_timeout")
 
 func _physics_process(delta):
 	
@@ -78,8 +91,16 @@ func fire():
 	get_parent().add_child(bullet)
 	bullet.rotation = 0 if facing_right else PI
 	bullet.global_position = $Bullet.global_position
-	set_mana(mana-10)
-	
-	
-	
+	self.mana -= 10
+
+func take_damage(value):
+	if not invincible:
+		self.health -= value
+		$InvincibilityTimer.start()
+		modulate.a = 0.5
+	invincible = true
+
+func on_InvincibilityTimer_timeout():
+	modulate.a = 1
+	invincible = false
 	
