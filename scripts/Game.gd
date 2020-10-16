@@ -1,7 +1,10 @@
 extends Node2D
 
-var Levels = [preload("res://scenes/TitleScreen.tscn"),
-	preload("res://scenes/Main.tscn")]
+var Levels = [
+	preload("res://scenes/TitleScreen.tscn"),
+	preload("res://scenes/Plot.tscn"),
+	preload("res://scenes/Main.tscn"),
+	]
 
 var current_level = 0
 var current_world: Node = null
@@ -15,6 +18,23 @@ func change_scene(scene):
 	current_world.queue_free()
 	current_world = s
 	$World.add_child(current_world)
+
+func add_scene(scene):
+	get_tree().paused = true
+	fade.fade_in()
+	yield(fade, "faded")
+	var s = load(scene).instance()
+	$World.add_child(s)
+	fade.fade_out()
+
+func remove_scene(scene_node):
+	
+	fade.fade_in()
+	yield(fade, "faded")
+	$World.remove_child(scene_node)
+	scene_node.queue_free()
+	fade.fade_out()
+	get_tree().paused = false
  
 func next():
 	if current_level + 1 >= Levels.size():

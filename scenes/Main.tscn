@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/Hero.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/Tileset/Wasteland-Files.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Ship.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=4]
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/CutsceneTrigger.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -203,3 +204,7 @@ position = Vector2( 554.194, 276.765 )
 
 [node name="Enemy5" parent="." instance=ExtResource( 5 )]
 position = Vector2( 525.603, 271.72 )
+
+[node name="CutsceneTrigger" parent="." instance=ExtResource( 6 )]
+position = Vector2( 120, 224 )
+cutscene = "res://scenes/InGamePlot.tscn"

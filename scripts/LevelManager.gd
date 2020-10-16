@@ -10,3 +10,9 @@ func change_scene(scene):
 
 func reset():
 	Game.reset()
+
+func add_scene(scene):
+	Game.add_scene(scene)
+
+func remove_scene(scene_node):
+	Game.remove_scene(scene_node)

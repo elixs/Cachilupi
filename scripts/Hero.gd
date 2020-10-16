@@ -4,6 +4,7 @@ extends KinematicBody2D
 var linear_vel = Vector2()
 
 var SPEED = 200
+var SPEED_SQUARED = SPEED * SPEED
 var GRAVITY = 400
 
 var invincible = false
@@ -36,6 +37,8 @@ onready var playback = $AnimationTree.get("parameters/playback")
 
 func _ready() -> void:
 	$InvincibilityTimer.connect("timeout", self, "on_InvincibilityTimer_timeout")
+	$PauseMenu/VBoxContainer/Continue.connect("pressed", self, "on_Continue_pressed")
+	$PauseMenu/VBoxContainer/Exit.connect("pressed", self, "on_Exit_pressed")
 
 func _physics_process(delta):
 	
@@ -61,12 +64,17 @@ func _physics_process(delta):
 	
 	
 	var attacking = Input.is_action_just_pressed("attack") and active
+	
+	if Input.is_action_just_pressed("pause"):
+		$PauseMenu/VBoxContainer.show()
+		get_tree().paused = true
 
 	# Animation
 	
 	if on_floor:
 		if linear_vel.length_squared() > 10:
 			playback.travel("run")
+			$AnimationTree.set("parameters/run/TimeScale/scale", 0.5 + linear_vel.length_squared() / SPEED_SQUARED / 2.0)
 		else:
 			playback.travel("idle")
 	else:
@@ -103,3 +111,13 @@ func on_InvincibilityTimer_timeout():
 	modulate.a = 1
 	invincible = false
 	
+# Pause Menu
+
+func on_Continue_pressed():
+	$PauseMenu/VBoxContainer.hide()
+	get_tree().paused = false
+	
+
+func on_Exit_pressed():
+	get_tree().paused = false
+	LevelManager.reset()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://scripts/Hero.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Run/HeroKnight_Run_5.png" type="Texture" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Jump/HeroKnight_Jump_0.png" type="Texture" id=31]
 [ext_resource path="res://sprites/Hero Knight/Sprites/HeroKnight/Fall/HeroKnight_Fall_3.png" type="Texture" id=32]
 [ext_resource path="res://sounds/SFX2020/DropMini.wav" type="AudioStream" id=33]
+[ext_resource path="res://fonts/ThaleahFat/ThaleahFat.ttf" type="DynamicFontData" id=34]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -187,24 +188,23 @@ animation = "jump"
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "jump_start"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=39]
 animation = "run"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+[sub_resource type="AnimationNodeTimeScale" id=40]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+[sub_resource type="AnimationNodeBlendTree" id=41]
+graph_offset = Vector2( -348, 45.5 )
+nodes/Animation/node = SubResource( 39 )
+nodes/Animation/position = Vector2( -160, 140 )
+nodes/TimeScale/node = SubResource( 40 )
+nodes/TimeScale/position = Vector2( 40, 120 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
-switch_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
 switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
@@ -212,8 +212,6 @@ switch_mode = 2
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 
@@ -234,7 +232,20 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=34]
 states/attack/node = SubResource( 8 )
@@ -247,11 +258,11 @@ states/jump/node = SubResource( 11 )
 states/jump/position = Vector2( 996, 70 )
 states/jump_start/node = SubResource( 12 )
 states/jump_start/position = Vector2( 990, -43 )
-states/run/node = SubResource( 13 )
-states/run/position = Vector2( 622, -82 )
-transitions = [ "idle", "run", SubResource( 14 ), "run", "idle", SubResource( 15 ), "idle", "attack", SubResource( 16 ), "run", "attack", SubResource( 17 ), "attack", "run", SubResource( 18 ), "attack", "idle", SubResource( 19 ), "run", "jump_start", SubResource( 20 ), "idle", "jump_start", SubResource( 21 ), "jump_start", "jump", SubResource( 22 ), "jump", "fall", SubResource( 23 ), "fall", "run", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "attack", SubResource( 26 ), "attack", "fall", SubResource( 27 ), "attack", "jump", SubResource( 28 ), "attack", "jump_start", SubResource( 29 ), "jump_start", "attack", SubResource( 30 ), "jump", "attack", SubResource( 31 ), "idle", "fall", SubResource( 32 ), "run", "fall", SubResource( 33 ) ]
+states/run/node = SubResource( 41 )
+states/run/position = Vector2( 628, -64 )
+transitions = [ "idle", "attack", SubResource( 16 ), "attack", "idle", SubResource( 19 ), "idle", "jump_start", SubResource( 21 ), "jump_start", "jump", SubResource( 22 ), "jump", "fall", SubResource( 23 ), "fall", "idle", SubResource( 25 ), "fall", "attack", SubResource( 26 ), "attack", "fall", SubResource( 27 ), "attack", "jump", SubResource( 28 ), "attack", "jump_start", SubResource( 29 ), "jump_start", "attack", SubResource( 30 ), "jump", "attack", SubResource( 31 ), "idle", "fall", SubResource( 32 ), "run", "idle", SubResource( 42 ), "idle", "run", SubResource( 43 ), "run", "jump_start", SubResource( 44 ), "run", "attack", SubResource( 45 ), "run", "fall", SubResource( 46 ), "fall", "run", SubResource( 47 ), "attack", "run", SubResource( 48 ) ]
 start_node = "idle"
-graph_offset = Vector2( 73, -156 )
+graph_offset = Vector2( 159, -141 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=35]
 
@@ -264,6 +275,14 @@ bg_color = Color( 0.0862745, 0.00784314, 0.00784314, 1 )
 [sub_resource type="StyleBoxFlat" id=38]
 bg_color = Color( 0.172549, 0.247059, 0.729412, 1 )
 
+[sub_resource type="DynamicFont" id=49]
+size = 64
+font_data = ExtResource( 34 )
+
+[sub_resource type="DynamicFont" id=50]
+size = 32
+font_data = ExtResource( 34 )
+
 [node name="Hero" type="KinematicBody2D" groups=[
 "player",
 ]]
@@ -275,7 +294,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.364706, 0.113725, 0.913725, 1 )
-texture = ExtResource( 18 )
+texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 2 )
@@ -290,6 +309,7 @@ tree_root = SubResource( 34 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 35 )
+parameters/run/TimeScale/scale = 1.0
 
 [node name="Bullet" type="Position2D" parent="."]
 position = Vector2( 47, 0 )
@@ -327,3 +347,41 @@ __meta__ = {
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -69.5
+margin_right = 80.0
+margin_bottom = 69.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer"]
+margin_right = 160.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 49 )
+text = "Pause"
+align = 1
+
+[node name="Continue" type="Button" parent="PauseMenu/VBoxContainer"]
+margin_top = 63.0
+margin_right = 160.0
+margin_bottom = 99.0
+custom_fonts/font = SubResource( 50 )
+text = "Continue"
+
+[node name="Exit" type="Button" parent="PauseMenu/VBoxContainer"]
+margin_top = 103.0
+margin_right = 160.0
+margin_bottom = 139.0
+custom_fonts/font = SubResource( 50 )
+text = "Exit"
