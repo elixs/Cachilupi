@@ -14,7 +14,21 @@ func set_health(value):
 	health = clamp(value, 0, 100)
 	$CanvasLayer/Health.value = health
 	if health == 0:
+		self.lives -= 1
+
+var lives = 3 setget set_lives
+func set_lives(value):
+	if value < lives:
+		LevelManager.go_to_checkpoint(self)
+	if value < 0:
 		LevelManager.reset()
+	lives = clamp(value, 0, 3)
+	 
+	for i in $PauseMenu/HBoxContainer.get_child_count():
+		if i < lives:
+			$PauseMenu/HBoxContainer.get_child(i).show()
+		else:
+			$PauseMenu/HBoxContainer.get_child(i).hide()
 
 var mana = 100 setget set_mana
 func set_mana(value):
@@ -39,6 +53,7 @@ func _ready() -> void:
 	$InvincibilityTimer.connect("timeout", self, "on_InvincibilityTimer_timeout")
 	$PauseMenu/VBoxContainer/Continue.connect("pressed", self, "on_Continue_pressed")
 	$PauseMenu/VBoxContainer/Exit.connect("pressed", self, "on_Exit_pressed")
+	LevelManager.start_position = global_position
 
 func _physics_process(delta):
 	
@@ -121,3 +136,9 @@ func on_Continue_pressed():
 func on_Exit_pressed():
 	get_tree().paused = false
 	LevelManager.reset()
+
+func teleport(new_position: Vector2):
+	global_position = new_position
+	if not facing_right:
+		scale.x = -1
+		facing_right = true

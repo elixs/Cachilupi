@@ -14,3 +14,5 @@ func _physics_process(delta):
 	
 	position += Vector2(cos(rotation), sin(rotation)) * SPEED * delta
 
+	var timer = Timer.new()
+	timer.queue_free()
