@@ -15,6 +15,7 @@ func set_health(value):
 	$CanvasLayer/Health.value = health
 	if health == 0:
 		self.lives -= 1
+		self.health = 100
 
 var lives = 3 setget set_lives
 func set_lives(value):
