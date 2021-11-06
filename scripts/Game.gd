@@ -28,7 +28,6 @@ func add_scene(scene):
 	fade.fade_out()
 
 func remove_scene(scene_node):
-	
 	fade.fade_in()
 	yield(fade, "faded")
 	$World.remove_child(scene_node)
